@@ -1,11 +1,8 @@
 import { Link } from 'react-router-dom';
 import UserMenu from './UserMenu';
 import VisitorMenu from './VisitorMenu';
-import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
 
 const Navbar = () => {
-  const { user } = useContext(AuthContext);
   return (
     <header className='navbar bg-base-100 shadow-sm'>
       <div className='flex-1'>
@@ -13,7 +10,10 @@ const Navbar = () => {
           PersonalLibrary
         </Link>
       </div>
-      <div className='flex gap-2'>{user ? <UserMenu /> : <VisitorMenu />}</div>
+      <div className='flex gap-2'>
+        <VisitorMenu />
+        <UserMenu />
+      </div>
     </header>
   );
 };

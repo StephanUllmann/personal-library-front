@@ -1,9 +1,6 @@
-import { useContext } from 'react';
 import { Link } from 'react-router-dom';
-import { AuthContext } from '../contexts/AuthContext';
 
 const UserMenu = () => {
-  const { logout } = useContext(AuthContext);
   return (
     <>
       <search>
@@ -29,7 +26,7 @@ const UserMenu = () => {
               <Link to={'/reading-list'}>Reading List</Link>
             </li>
             <li>
-              <button onClick={() => logout()}>Logout</button>
+              <button onClick={() => console.log('LOGOUT NOT IMPLEMENTED')}>Logout</button>
             </li>
           </ul>
         </div>

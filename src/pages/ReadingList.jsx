@@ -1,29 +1,20 @@
 import { useContext } from 'react';
-import { AuthContext } from '../contexts/AuthContext';
 import { useEffect, useState } from 'react';
 import { ToasterContext } from '../contexts/ToasterContext';
 
 const bookStatus = ['read', 'pending', 'lend', 'not read', 'lost', 'on wishlist'];
 
 const ReadingList = () => {
-  const { user } = useContext(AuthContext);
   const { toaster } = useContext(ToasterContext);
   const [books, setBooks] = useState(null);
 
   useEffect(() => {
     const fetchReadingList = async () => {
-      try {
-        const res = await fetch(`http://localhost:8901/users/${user._id}`);
-        const data = await res.json();
-        if (!res.ok) throw new Error(res.msg);
-        setBooks(data.data.readingList);
-      } catch {
-        toaster.error('Failed to get your Reading List');
-      }
+      toaster.error('Not implemented');
     };
 
     fetchReadingList();
-  }, [user, toaster]);
+  }, [toaster]);
 
   const handleChange = async (e, bookId, title) => {
     const newStatus = e.target.value;
@@ -31,22 +22,7 @@ const ReadingList = () => {
     setBooks(updatedBooks);
 
     try {
-      const token = localStorage.getItem('token');
-      console.log({ token });
-      const res = await fetch(`http://localhost:8901/users/${user._id}/books/${bookId}`, {
-        method: 'PUT',
-        // credentials: 'include',
-        body: JSON.stringify({ status: newStatus }),
-        headers: {
-          'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
-        },
-      });
-
-      const data = await res.json();
-
-      if (!res.ok) throw new Error(data.msg);
-      toaster.success(`Changed ${title} to ${newStatus}`);
+      toaster.error('Not implemented');
     } catch {
       setBooks(books);
       toaster.error(`Failed to change ${title} to ${newStatus}`);
