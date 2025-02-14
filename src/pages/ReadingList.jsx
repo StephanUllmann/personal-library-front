@@ -31,15 +31,15 @@ const ReadingList = () => {
     setBooks(updatedBooks);
 
     try {
-      const token = localStorage.getItem('token');
-      console.log({ token });
+      // const token = localStorage.getItem('token');
+      // console.log({ token });
       const res = await fetch(`http://localhost:8901/users/${user._id}/books/${bookId}`, {
         method: 'PUT',
-        // credentials: 'include',
+        credentials: 'include',
         body: JSON.stringify({ status: newStatus }),
         headers: {
           'Content-Type': 'application/json',
-          Authorization: `Bearer ${token}`,
+          // Authorization: `Bearer ${token}`,
         },
       });
 
