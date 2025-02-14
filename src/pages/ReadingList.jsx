@@ -13,7 +13,7 @@ const ReadingList = () => {
   useEffect(() => {
     const fetchReadingList = async () => {
       try {
-        const res = await fetch(`http://localhost:8901/users/${user._id}`);
+        const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}`);
         const data = await res.json();
         if (!res.ok) throw new Error(res.msg);
         setBooks(data.data.readingList);
@@ -33,7 +33,7 @@ const ReadingList = () => {
     try {
       // const token = localStorage.getItem('token');
       // console.log({ token });
-      const res = await fetch(`http://localhost:8901/users/${user._id}/books/${bookId}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/${user._id}/books/${bookId}`, {
         method: 'PUT',
         credentials: 'include',
         body: JSON.stringify({ status: newStatus }),

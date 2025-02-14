@@ -13,7 +13,7 @@ const AuthContextProvider = ({ children }) => {
 
   const signup = async (formData) => {
     try {
-      const res = await fetch(`http://localhost:8901/users/signup`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/signup`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(formData),
@@ -33,7 +33,7 @@ const AuthContextProvider = ({ children }) => {
 
   const login = async (credentials) => {
     try {
-      const res = await fetch(`http://localhost:8901/users/login`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/login`, {
         method: 'POST',
         credentials: 'include',
         body: JSON.stringify(credentials),
@@ -54,7 +54,7 @@ const AuthContextProvider = ({ children }) => {
 
   const logout = async () => {
     try {
-      const res = await fetch(`http://localhost:8901/users/logout`, { method: 'POST' });
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/logout`, { method: 'POST' });
       const data = await res.json();
       if (!res.ok) throw new Error(data.msg);
       setUser(null);
@@ -68,7 +68,7 @@ const AuthContextProvider = ({ children }) => {
 
   const sendMe = async () => {
     try {
-      const res = await fetch(`http://localhost:8901/users/me/${user._id}`, {
+      const res = await fetch(`${import.meta.env.VITE_API_URL}/users/me/${user._id}`, {
         credentials: 'include',
       });
       const data = await res.json();
